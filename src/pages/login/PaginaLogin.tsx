@@ -1,10 +1,8 @@
-import React from 'react'
-import Login from '../../shared/components/login/Login'
+import React from "react";
+import Login from "../../shared/components/login/Login";
 
 const PaginaLogin = () => {
-  return (
-    <Login/>
-  )
-}
+  return <Login />;
+};
 
-export default PaginaLogin
+export default PaginaLogin;
