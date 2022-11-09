@@ -1,0 +1,68 @@
+{
+    "people": [
+      {
+        "id": 1,
+        "nomeCompleto": "Vinícius De Carvalho",
+        "idade": 19,
+        "altura": 1.78,
+        "peso": 54,
+        "imc": 17.04
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "José Alves",
+        "idade": 43,
+        "altura": 1.73,
+        "peso": 71,
+        "imc": 23.72
+      },
+      {
+        "id": 3,
+        "nomeCompleto": "Lucas Silva",
+        "idade": 34,
+        "altura": 1.82,
+        "peso": 70,
+        "imc": 21.13
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "Ana Maria",
+        "idade": 43,
+        "altura": 1.73,
+        "peso": 71,
+        "imc": 23.72
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "Júlia Almeida",
+        "idade": 43,
+        "altura": 1.73,
+        "peso": 49,
+        "imc": 23.72
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "José Alves",
+        "idade": 43,
+        "altura": 1.93,
+        "peso": 87,
+        "imc": 23.72
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "Pedro Marins",
+        "idade": 43,
+        "altura": 1.72,
+        "peso": 50,
+        "imc": 23.72
+      },
+      {
+        "id": 2,
+        "nomeCompleto": "Cristina Santos",
+        "idade": 43,
+        "altura": 1.76,
+        "peso": 62,
+        "imc": 23.72
+      }
+    ]
+  }

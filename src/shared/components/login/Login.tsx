@@ -8,34 +8,39 @@ import {
 } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import astronauta from "../../assets/images/astronauta.png";
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const Login = () => {
+  /* const auth = useAuth();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  async function handleSubmit(values :{username: string, password: string}) {
+    try {
+      await auth.authenticate(values.username, values.password);
+      console.log("deu certo");
+      navigate("/listagem");
+    } catch (error) {
+      <Alert severity="error">Email ou senha inválidos</Alert>;
+      setUsername("");
+      setPassword("");
+    }
+  } */
 
-  const handleSubmit = (event: any) => {
-    console.log("ok")
-    event.preventDefault();
-    fetch("http://peopletest.leadsoft.inf.br/api/v1/Auth/LogIn", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json-patch+json"
-      },
-      body: JSON.stringify({username, password}),
-    }).then(resposta => {
-      console.log(resposta)
-      return resposta.json()
-    }).then(json => console.log(json))
-  }
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    setUsername("");
+    setPassword("");
+    navigate("/listagem");
+  };
 
   const theme = useTheme();
 
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <Box
@@ -67,8 +72,8 @@ const Login = () => {
         <Box
           display="flex"
           flexDirection="column"
-          component="form"
           width="350px"
+          component="form"
           onSubmit={handleSubmit}
         >
           <TextField
@@ -109,7 +114,6 @@ const Login = () => {
           </Box>
         </Box>
       </Box>
-      {username}
     </Box>
   );
 };

@@ -8,18 +8,17 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>();
 
   useEffect(() => {
-    const user = getUserLocalStorage()
+    const user = getUserLocalStorage();
 
     if (user) {
-        setUser(user);
+      setUser(user);
     }
-    
-  }, [])
+  }, []);
 
-  async function authenticate(email: string, password: string) {
-    const response = await LoginRequest(email, password);
+  async function authenticate(username: string, password: string) {
+    const response = await LoginRequest(username, password);
 
-    const payload = { token: response.token, email };
+    const payload = { token: response.token, username };
 
     setUser(payload);
     setUserLocalStorage(payload);
