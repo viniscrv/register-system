@@ -1,26 +1,33 @@
 import {
   Box,
-  Paper,
-  Grid,
-  LinearProgress,
   Typography,
-  TextField,
   Button,
   Icon,
+  Paper,
+  Grid,
+  TextField,
 } from "@mui/material";
+import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Cadastro = () => {
-  const [nomeCompleto, setNomeCompleto] = useState<string>("");
-  const [idade, setIdade] = useState<string>("");
-  const [altura, setAltura] = useState<string>("");
-  const [peso, setPeso] = useState<string>("");
-  const [imc, setImc] = useState<string>("");
+const Edicao = () => {
+  const parametros = useParams();
 
-  const cadastrar = async (e: any) => {
+  const deleteId = () => {
+    if (confirm("Tem certeza que deseja excluir este registro?")) {
+      axios.delete(`http://localhost:3000/people/${parametros.id}`);
+      navigate("/listagem-alternativa");
+    }
+  };
+
+  const alterarId = (id: any) => {
+    axios.put(`http://localhost:3000/people/${parametros.id}`, id);
+    navigate("/listagem-alternativa");
+  };
+
+  const onSubmit = (e: any) => {
     e.preventDefault();
-
     const people = {
       nomeCompleto,
       idade,
@@ -28,19 +35,17 @@ const Cadastro = () => {
       peso,
       imc,
     };
-
-    const res = await fetch("http://localhost:3000/people", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(people),
-    });
-
-    navigate("/listagem-alternativa");
+    alterarId(people);
   };
 
+  const [nomeCompleto, setNomeCompleto] = useState<string>("");
+  const [idade, setIdade] = useState<string>("");
+  const [altura, setAltura] = useState<string>("");
+  const [peso, setPeso] = useState<string>("");
+  const [imc, setImc] = useState<string>("");
+
   const navigate = useNavigate();
+
   return (
     <Box
       width="100vw"
@@ -51,7 +56,7 @@ const Cadastro = () => {
       }}
     >
       <Typography p={3} variant="h2" sx={{ color: "white" }}>
-        Cadastro
+        Editar
       </Typography>
       <Box
         display="flex"
@@ -86,7 +91,7 @@ const Cadastro = () => {
         flexDirection="column"
         component={Paper}
       >
-        <Box component="form" onSubmit={cadastrar}>
+        <Box component="form" onSubmit={onSubmit}>
           <Grid container p={3} spacing={2}>
             <Grid item>
               <Typography variant="h4">Geral</Typography>
@@ -95,8 +100,8 @@ const Cadastro = () => {
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   label="Nome completo"
                   value={nomeCompleto}
                   onChange={(e) => setNomeCompleto(e.target.value)}
@@ -107,8 +112,8 @@ const Cadastro = () => {
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   label="Idade"
                   value={idade}
                   onChange={(e) => setIdade(e.target.value)}
@@ -119,8 +124,8 @@ const Cadastro = () => {
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   label="Altura"
                   value={altura}
                   onChange={(e) => setAltura(e.target.value)}
@@ -130,8 +135,8 @@ const Cadastro = () => {
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   label="Peso"
                   value={peso}
                   onChange={(e) => setPeso(e.target.value)}
@@ -141,8 +146,8 @@ const Cadastro = () => {
             <Grid container item direction="row" spacing={2}>
               <Grid item xs={12}>
                 <TextField
-                  required
                   fullWidth
+                  required
                   label="IMC"
                   value={imc}
                   onChange={(e) => setImc(e.target.value)}
@@ -156,13 +161,27 @@ const Cadastro = () => {
             fullWidth
             type="submit"
             sx={{
-              background:
-                "linear-gradient(124deg, rgba(5,202,255,1) 0%, rgba(20,88,245,1) 100%)",
+              background: "linear-gradient(124deg, #36acd4 0%, #1b7494 100%)",
+              color: "white",
+              p: 2,
+              marginBottom: 2,
+            }}
+          >
+            <Typography variant="button">Editar registro</Typography>
+          </Button>
+          <Button
+            color="primary"
+            size="large"
+            fullWidth
+            type="button"
+            onClick={deleteId}
+            sx={{
+              background: "linear-gradient(124deg, #d43636 0%, #670a0a 100%)",
               color: "white",
               p: 2,
             }}
           >
-            <Typography variant="button">Cadastrar</Typography>
+            <Typography variant="button">Excluir registro</Typography>
           </Button>
         </Box>
       </Box>
@@ -170,4 +189,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default Edicao;

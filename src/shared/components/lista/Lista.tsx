@@ -86,11 +86,12 @@ const Lista = () => {
                   <TableCell>{pessoa.peso}</TableCell>
                   <TableCell>{pessoa.imc}</TableCell>
                   <TableCell>
-                    <IconButton>
+                    <IconButton
+                      onClick={() =>
+                        navigate(`/edicao-alternativa/${pessoa.id}`)
+                      }
+                    >
                       <Icon>edit</Icon>
-                    </IconButton>
-                    <IconButton>
-                      <Icon>delete</Icon>
                     </IconButton>
                   </TableCell>
                 </TableRow>
