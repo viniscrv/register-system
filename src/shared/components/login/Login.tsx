@@ -3,7 +3,6 @@ import {
   Button,
   Paper,
   TextField,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import logo from "../../assets/images/logo.png";
@@ -33,9 +32,6 @@ const Login = () => {
     navigate("/listagem");
   };
 
-  const theme = useTheme();
-
-  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigate();
 
@@ -61,7 +57,7 @@ const Login = () => {
 
       <Box
         component={Paper}
-        width={mdDown ? "450px" : "700px"}
+        width="700px"
         height="400px"
         elevation={3}
         display="flex"
@@ -107,7 +103,7 @@ const Login = () => {
             Login
           </Button>
           <Box
-            display={mdDown ? "none" : "block"}
+            display="block"
             sx={{ position: "absolute", top: -200, right: -300 }}
           >
             <img width="400px" src={astronauta} />

@@ -1,4 +1,4 @@
-import { Box, Paper, Button, useMediaQuery, useTheme, Typography } from "@mui/material";
+import { Box, Paper, Button, useTheme, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useAuth } from "../../../context/AuthProvider/useAuth";
@@ -10,10 +10,6 @@ const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
     e.preventDefault();
     navigate("/listagem");
   }
-
-  const theme = useTheme();
-
-  const mdDown = useMediaQuery(theme.breakpoints.down("md"));
 
   const navigate = useNavigate();
 
@@ -39,7 +35,7 @@ const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
 
         <Box
           component={Paper}
-          width={mdDown ? "450px" : "700px"}
+          width="700px"
           height="400px"
           elevation={3}
           display="flex"

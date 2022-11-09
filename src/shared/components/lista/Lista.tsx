@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Icon,
   IconButton,
   Paper,
@@ -9,11 +10,14 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import BarraDeFerramentas from "../barra-de-ferramentas/BarraDeFerramentas";
+import { useNavigate } from "react-router-dom";
 
 const Lista = () => {
+  const navigate = useNavigate();
+
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
@@ -35,7 +39,31 @@ const Lista = () => {
           "linear-gradient(to right top, #171717, #1d1f24, #161d23, #132227, #153e44)",
       }}
     >
-      <BarraDeFerramentas />
+      <Box
+        display="flex"
+        justifyContent="end"
+        maxWidth={1200}
+        m="auto"
+        p={3}
+        sx={{
+          backgroundColor: "transparent",
+        }}
+      >
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<Icon>add</Icon>}
+          size="large"
+          sx={{
+            background:
+              "linear-gradient(124deg, rgba(5,202,255,1) 0%, rgba(20,88,245,1) 100%)",
+            color: "white",
+          }}
+          onClick={() => navigate("/cadastro-alternativo")}
+        >
+          <Typography variant="button">Novo</Typography>
+        </Button>
+      </Box>
       <Box maxWidth={1200} m="auto">
         <TableContainer>
           <Table>
