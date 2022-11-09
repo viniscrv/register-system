@@ -8,10 +8,29 @@ import {
 } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import astronauta from "../../assets/images/astronauta.png";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event: any) => {
+    console.log("ok")
+    event.preventDefault();
+    fetch("http://peopletest.leadsoft.inf.br/api/v1/Auth/LogIn", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json-patch+json"
+      },
+      body: JSON.stringify({username, password}),
+    }).then(resposta => {
+      console.log(resposta)
+      return resposta.json()
+    }).then(json => console.log(json))
+  }
+
   const theme = useTheme();
 
   const mdDown = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,12 +69,15 @@ const Login = () => {
           flexDirection="column"
           component="form"
           width="350px"
+          onSubmit={handleSubmit}
         >
           <TextField
             label="E-mail"
             variant="outlined"
             required
             sx={{ mb: "1em" }}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             label="Senha"
@@ -63,6 +85,8 @@ const Login = () => {
             type="password"
             required
             sx={{ mb: "1em" }}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <Button
             variant="contained"
@@ -72,7 +96,8 @@ const Login = () => {
                 "linear-gradient(124deg, rgba(5,202,255,1) 0%, rgba(20,88,245,1) 100%)",
               color: "white",
             }}
-            onClick={() => navigate("/listagem")}
+            // onClick={() => navigate("/listagem")}
+            type="submit"
           >
             Login
           </Button>
@@ -84,6 +109,7 @@ const Login = () => {
           </Box>
         </Box>
       </Box>
+      {username}
     </Box>
   );
 };

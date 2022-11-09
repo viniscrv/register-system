@@ -13,7 +13,7 @@ import React from "react";
 const Lista = () => {
   return (
     <Box>
-      <TableContainer component={Paper} variant="outlined" elevation={3}>
+      <TableContainer component={Paper} variant="outlined">
         <Table>
           <TableHead>
             <TableRow>
