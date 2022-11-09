@@ -1,4 +1,3 @@
-import React from "react";
 import Login from "../../shared/components/login/Login";
 
 const PaginaLogin = () => {
